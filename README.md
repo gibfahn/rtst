@@ -10,7 +10,7 @@ Install the wrapper tool [`bazelisk`][] to make sure you build with the correct 
 
 On macOS this is just `brew install bazelisk`.
 
-### Build
+### Build and Test
 
 Build everything with:
 
@@ -30,6 +30,14 @@ Run the built docker image with:
 
 ```bash
 bazelisk run rtst_image
+```
+
+### Test
+
+Test everything with:
+
+```bash
+bazelisk test ...
 ```
 
 [`bazelisk`]: https://github.com/bazelbuild/bazelisk
