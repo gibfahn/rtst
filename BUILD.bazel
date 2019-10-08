@@ -35,5 +35,6 @@ load("@io_bazel_rules_docker//rust:image.bzl", "rust_image")
 
 rust_image(
     name = "rtst_image",
-    srcs = ["src/main.rs"],
+    # srcs = ["src/main.rs"],
+    binary = ":rtst",
 )
