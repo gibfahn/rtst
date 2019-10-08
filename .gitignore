@@ -1,2 +1,7 @@
+# Rust/Cargo build files.
 /target
 **/*.rs.bk
+
+# Bazel build files.
+/.bazel/
+/bazel-*
