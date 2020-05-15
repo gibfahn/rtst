@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# TODO(gib): add a bazelrc to set the output_user_root.
+
+set -e
+
+set -x
+
+project_dir=$(cd "$(dirname "$(dirname "$BASH_SOURCE")")" && pwd)
+
+if [[ -n $* ]]; then
+  interactive= noninteractive=true
+else
+  interactive=true noninteractive=
+  extra_args=""
+fi
+
+docker run \
+  ${interactive:+--entrypoint=/bin/bash} \
+  ${interactive:+-it} \
+  -v "$project_dir":/src/workspace \
+  -v ~/.cache/docker/bazel:/.cache/bazel \
+  -v /tmp/build_output:/tmp/build_output \
+  -w /src/workspace \
+  l.gcr.io/google/bazel:latest \
+  ${noninteractive:+--output_user_root=/tmp/build_output} \
+  "$@"
